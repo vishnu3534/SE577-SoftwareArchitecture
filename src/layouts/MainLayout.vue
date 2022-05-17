@@ -46,10 +46,11 @@
   </q-layout>
 </template>
 
-<script lang="ts">
+<script lang='ts'>
 
 import { defineComponent, ref } from '@vue/composition-api';
-import EssentialLink from 'components/EssentialLink.vue'
+import EssentialLink from 'components/EssentialLink.vue';
+
 
 const linksData = [
  {
@@ -81,6 +82,7 @@ const linksData = [
     caption: '@vishnuKottarakara',
     icon: 'instagram',
     link: 'https://www.instagram.com/vishnukottarakara/'
+    //link: 'http://localhost:8081/listrepos'
   },
   {
     title: 'Contact Me',

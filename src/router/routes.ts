@@ -1,5 +1,4 @@
 import { RouteConfig } from 'vue-router';
-
 const routes: RouteConfig[] = [
   {
     path: '/',
@@ -12,6 +11,7 @@ const routes: RouteConfig[] = [
       { path: 'imagegallery', component: () => import('pages/AppPages/imagegallery.vue') },
       { path: 'photopackages', component: () => import('pages/AppPages/photopackages.vue') },
       { path: 'phototypes', component: () => import('pages/AppPages/phototypes.vue') },
+      { path: 'gitrepos', component: () => import('pages/AppPages/fetchrepos.vue') },
       { path: 'photoyear', component: () => import('pages/AppPages/photoyear.vue') },
       { path: 'photobycountry', component: () => import('pages/AppPages/photobycountry.vue') },
       { path: 'awardphotos', component: () => import('pages/AppPages/awardphotos.vue') }
