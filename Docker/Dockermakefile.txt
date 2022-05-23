@@ -1,0 +1,7 @@
+Install Node 16 first
+Create directories that needs to run inside the docker and provide enough permissions
+Define the WORKDIR
+Cope all the files from the Docker folder in the repository to the work directory created
+Install the dependent packeges using RUN command
+Expose the port for the container that will be communicating from the outside port
+Define the commands to execute during start up
