@@ -2,21 +2,22 @@
   <div class="myCardWithHyperlinkDiv">
     <q-card flat class="my-card text-white" :class="childClass">
       <q-card-section>
-        <div class="text-h6"><a :href="link">{{title}}</a></div>
+        <div class="text-h6">
+          <a :href="link">{{ title }}</a>
+        </div>
       </q-card-section>
     </q-card>
-
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@vue/composition-api';
+import { defineComponent } from 'vue';
 export default defineComponent({
-  name :'AboutCardWitHyperlinkComponent',
+  name: 'AboutCardWitHyperlinkComponent',
   props: {
-    childClass : String,
+    childClass: String,
     title: String,
-    link : String
+    link: String,
   },
 });
 </script>

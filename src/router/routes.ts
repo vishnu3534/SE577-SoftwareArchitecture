@@ -1,29 +1,68 @@
-import { RouteConfig } from 'vue-router';
-const routes: RouteConfig[] = [
+import { RouteRecordRaw } from 'vue-router';
+
+const routes: RouteRecordRaw[] = [
   {
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/AppPages/Home.vue') },
-      { path: 'home', component: () => import('pages/AppPages/Home.vue') },
-      { path: 'contact', component: () => import('pages/AppPages/contact.vue') },
-      { path: 'photoblog', component: () => import('pages/AppPages/photoblog.vue') },
-      { path: 'imagegallery', component: () => import('pages/AppPages/imagegallery.vue') },
-      { path: 'photopackages', component: () => import('pages/AppPages/photopackages.vue') },
-      { path: 'phototypes', component: () => import('pages/AppPages/phototypes.vue') },
-      { path: 'gitrepos', component: () => import('pages/AppPages/fetchrepos.vue') },
-      { path: 'photoyear', component: () => import('pages/AppPages/photoyear.vue') },
-      { path: 'photobycountry', component: () => import('pages/AppPages/photobycountry.vue') },
-      { path: 'awardphotos', component: () => import('pages/AppPages/awardphotos.vue') }
-    ]
+      { path: '', component: () => import('pages/AppPages/HomePage.vue') },
+      {
+        path: '/HomePage',
+        component: () => import('pages/AppPages/HomePage.vue'),
+      },
+      {
+        path: '/ImageGallery',
+        component: () => import('pages/AppPages/ImageGallery.vue'),
+      },
+      {
+        path: '/PhotoPackages',
+        component: () => import('pages/AppPages/PhotoPackages.vue'),
+      },
+      {
+        path: '/PhotoBlog',
+        component: () => import('pages/AppPages/PhotoBlog.vue'),
+      },
+      {
+        path: '/ContactDetails',
+        component: () => import('pages/AppPages/ContactDetails.vue'),
+      },
+      {
+        path: '/PhotoTypes',
+        component: () => import('pages/AppPages/PhotoTypes.vue'),
+      },
+      {
+        path: '/PhotoYear',
+        component: () => import('pages/AppPages/PhotoYear.vue'),
+      },
+      {
+        path: '/PhotoByCountry',
+        component: () => import('pages/AppPages/PhotoByCountry.vue'),
+      },
+      {
+        path: '/AwardPhotos',
+        component: () => import('pages/AppPages/AwardPhotos.vue'),
+      },
+      {
+        path: '/listrepos',
+        component: () => import('src/pages/AppPages/GithubPage.vue'),
+      },
+      {
+        path: '/Auth',
+        component: () => import('pages/AppPages/AuthorizedPage.vue'),
+      },
+      {
+        path: '/Unauth',
+        component: () => import('pages/AppPages/UnauthorizedPage.vue'),
+      },
+    ],
   },
 
   // Always leave this as last one,
   // but you can also remove it
   {
-    path: '*',
-    component: () => import('pages/Error404.vue')
-  }
+    path: '/:catchAll(.*)*',
+    component: () => import('pages/ErrorNotFound.vue'),
+  },
 ];
 
 export default routes;

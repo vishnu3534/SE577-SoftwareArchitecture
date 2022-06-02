@@ -1,13 +1,9 @@
 <template>
-  <div class="myCardDiv">
-    <q-card flat class="my-card text-black" :class="childClass">
+  <div class="col-12">
+    <q-card flat class="my-card text-white" :class="childClass">
       <q-card-section>
         <div class="text-h6">{{ title }}</div>
-        <div class="text-bold">
-          <b>
-            <font color="black">{{ primaryContent }}</font></b
-          >
-        </div>
+        <slot></slot>
       </q-card-section>
     </q-card>
   </div>
@@ -15,12 +11,12 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+
 export default defineComponent({
-  name: 'AboutTextOnlyCardComponent',
+  name: 'AboutCardComponent',
   props: {
     childClass: String,
     title: String,
-    primaryContent: String,
   },
 });
 </script>

@@ -8,30 +8,19 @@
           round
           icon="menu"
           aria-label="Menu"
-          @click="leftDrawerOpen = !leftDrawerOpen"
+          @click="toggleLeftDrawer"
         />
 
-        <q-toolbar-title>
-        Vishnu Prasad Photography
-        </q-toolbar-title>
+        <q-toolbar-title> Vishnu's Photohub and Github </q-toolbar-title>
 
-        <div>Quasar v{{ $q.version }}</div>
+        <div>v 0.1</div>
       </q-toolbar>
     </q-header>
 
-    <q-drawer
-      v-model="leftDrawerOpen"
-      show-if-above
-      bordered
-      content-class="bg-grey-1"
-    >
+    <q-drawer v-model="leftDrawerOpen" bordered>
       <q-list>
-        <q-item-label
-          header
-          class="text-grey-8"
-        >
-          Essential Links
-        </q-item-label>
+        <q-item-label header> Essential Links </q-item-label>
+
         <EssentialLink
           v-for="link in essentialLinks"
           :key="link.title"
@@ -41,66 +30,86 @@
     </q-drawer>
 
     <q-page-container>
-      <router-view />
+      <div id="app">
+        <div id="nav">
+          <router-link to="/">Home</router-link> |
+          <router-link to="/ImageGallery">ImageGallery</router-link> |
+          <router-link to="/PhotoPackages">PhotoPackages</router-link> |
+          <router-link to="/ContactDetails">Contact Me</router-link> |
+          <router-link to="/listrepos">Github</router-link>
+        </div>
+        <router-view />
+      </div>
     </q-page-container>
   </q-layout>
 </template>
 
-<script lang='ts'>
-
-import { defineComponent, ref } from '@vue/composition-api';
+<script lang="ts">
+import { defineComponent, ref } from 'vue';
 import EssentialLink from 'components/EssentialLink.vue';
 
-
-const linksData = [
- {
+const linksList = [
+  {
     title: 'Home',
-    caption : 'Home page',
-    icon:'home',
-    link:'#/home'
+    caption: 'Home page',
+    icon: 'home',
+    link: '#/HomePage',
   },
- {
-    title: 'Image Gallery',
-    caption: 'All photos taken by Vishnu Prasad',
-    icon: 'photo',
-    link: '#/imagegallery'
-  },
-{
-    title: 'Photography Packages',
-    caption: 'Rates for various photography packages',
-    icon: 'work',
-    link: '#/photopackages'
-  },
-   {
+  {
     title: 'Travel Blog',
     caption: '@vishnuKottarakara',
     icon: 'flight',
-    link: '#/photoblog'
+    link: '#/PhotoBlog',
   },
-   {
+  {
     title: 'Instagram',
     caption: '@vishnuKottarakara',
     icon: 'instagram',
-    link: 'https://www.instagram.com/vishnukottarakara/'
+    link: 'https://www.instagram.com/vishnukottarakara/',
     //link: 'http://localhost:8081/listrepos'
   },
-  {
-    title: 'Contact Me',
-    caption: 'Contact Details',
-    icon: 'phone',
-    link: '#/contact'
-  }
 ];
 
 export default defineComponent({
   name: 'MainLayout',
-  components: { EssentialLink },
+
+  components: {
+    EssentialLink,
+  },
+
   setup() {
     const leftDrawerOpen = ref(false);
-    const essentialLinks = ref(linksData);
 
-    return {leftDrawerOpen, essentialLinks}
-  }
+    return {
+      essentialLinks: linksList,
+      leftDrawerOpen,
+      toggleLeftDrawer() {
+        leftDrawerOpen.value = !leftDrawerOpen.value;
+      },
+    };
+  },
 });
-
 </script>
+
+<style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+
+#nav {
+  padding: 30px;
+}
+
+#nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+#nav a.router-link-exact-active {
+  color: #42b983;
+}
+</style>
