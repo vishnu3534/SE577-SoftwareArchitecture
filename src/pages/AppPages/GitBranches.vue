@@ -3,7 +3,7 @@
     <section class="hero is-medium is-primary is-bold mb-6">
       <div class="hero-body">
         <div class="container">
-          <h4 class="title">Public gists listed below</h4>
+          <h4 class="title">All Git branches are listed below</h4>
         </div>
       </div>
     </section>
@@ -12,20 +12,16 @@
         <table class="table is-bordered is-striped is-hoverable is-fullwidth">
           <thead>
             <tr>
-              <th>ID</th>
               <th>Name</th>
-              <th>URL</th>
-              <th>Public</th>
-              <th>Login</th>
+              <th>Commit Url</th>
+              <th>Protected</th>
             </tr>
           </thead>
           <tbody>
-            <tr v-for="repo in repos" v-bind:key="repo.id">
-              <td>{{ repo.id }}</td>
-              <td>{{ repo.description }}</td>
-              <td>{{ repo.html_url }}</td>
-              <td>{{ repo.public }}</td>
-              <td>{{ repo.owner.login }}</td>
+            <tr v-for="repo in repos" v-bind:key="repo.name">
+              <td>{{ repo.name }}</td>
+              <td>{{ repo.commit.url }}</td>
+              <td>{{ repo.protected }}</td>
             </tr>
           </tbody>
         </table>
@@ -46,8 +42,14 @@ export default {
   },
   created: function () {
     axios
-      .get('http://localhost:3000/unauthorizedgists/' + gitcred.gitusername)
-      //.get('https://api.github.com/users/' + gitcred.gitusername + '/gists')
+      .get(
+        'http://localhost:3000/authorizedbranches/' +
+          gitcred.gitusername +
+          '/' +
+          gitcred.gitaccesstoken +
+          '/' +
+          gitcred.gitrepo
+      )
       .then((response) => {
         this.repos = response.data;
       });

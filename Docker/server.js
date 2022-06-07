@@ -1,21 +1,79 @@
-/* eslint @typescript-eslint/no-var-requires: "off" */
-const express = require( 'express' );
-const app = express()
-const port = 3000
-app.get('/listrepos', (req, res) => {
-  //res.send('Hello World!')
-  const fs = require('fs');
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-const yaml = require('js-yaml');
-try {
-  let fileContents = fs.readFileSync('./data.yaml', 'utf8');
-  let data = yaml.load(fileContents);
-  res.send(data);
-} catch (e) {
-  console.log(e);
-}
-})
+import axios from 'axios';
+import express from 'express';
+const app = express();
+const port = 3000;
+
+app.get('/unauthorizedgists/:usern', (req, res) => {
+  try {
+    axios
+      .get('https://api.github.com/users/' + req.params.usern + '/gists')
+      .then((response) => {
+        res.send(response.data);
+      });
+  } catch (exception) {
+    process.stderr.write('ERROR received from the url' + exception);
+  }
+});
+
+app.get('/authorizedgists/:username/:accesstoken', (req, res) => {
+  try {
+    axios
+      .get('https://api.github.com/users/' + req.params.username + '/gists', {
+        headers: {
+          authorization:
+            'Basic ' + btoa(req.params.username + ':' + req.params.accesstoken),
+        },
+      })
+      .then((response) => {
+        res.send(response.data);
+      });
+  } catch (exception) {
+    process.stderr.write('ERROR received from the url' + exception);
+  }
+});
+
+app.get('/authorizedrepos/:username/:accesstoken', (req, res) => {
+  try {
+    axios
+      .get('https://api.github.com/users/' + req.params.username + '/repos', {
+        headers: {
+          authorization:
+            'Basic ' + btoa(req.params.username + ':' + req.params.accesstoken),
+        },
+      })
+      .then((response) => {
+        res.send(response.data);
+      });
+  } catch (exception) {
+    process.stderr.write('ERROR received from the url' + exception);
+  }
+});
+
+app.get('/authorizedbranches/:username/:accesstoken/:gitrepo', (req, res) => {
+  try {
+    axios
+      .get(
+        'https://api.github.com/repos/' +
+          req.params.username +
+          '/' +
+          req.params.gitrepo +
+          '/branches',
+        {
+          headers: {
+            authorization:
+              'Basic ' +
+              btoa(req.params.username + ':' + req.params.accesstoken),
+          },
+        }
+      )
+      .then((response) => {
+        res.send(response.data);
+      });
+  } catch (exception) {
+    process.stderr.write('ERROR received from the url' + exception);
+  }
+});
 
 app.listen(port, () => {
-  console.log(`Client app listening on port ${port}`)
-})
+  console.log(`Client app listening on port ${port}`);
+});

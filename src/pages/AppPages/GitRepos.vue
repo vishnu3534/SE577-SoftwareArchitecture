@@ -3,7 +3,7 @@
     <section class="hero is-medium is-primary is-bold mb-6">
       <div class="hero-body">
         <div class="container">
-          <h4 class="title">Public gists listed below</h4>
+          <h4 class="title">All Repos are listed below</h4>
         </div>
       </div>
     </section>
@@ -16,16 +16,16 @@
               <th>Name</th>
               <th>URL</th>
               <th>Public</th>
-              <th>Login</th>
+              <th>CreatedAT</th>
             </tr>
           </thead>
           <tbody>
             <tr v-for="repo in repos" v-bind:key="repo.id">
               <td>{{ repo.id }}</td>
-              <td>{{ repo.description }}</td>
+              <td>{{ repo.name }}</td>
               <td>{{ repo.html_url }}</td>
-              <td>{{ repo.public }}</td>
-              <td>{{ repo.owner.login }}</td>
+              <td>{{ repo.private }}</td>
+              <td>{{ repo.created_at }}</td>
             </tr>
           </tbody>
         </table>
@@ -46,8 +46,12 @@ export default {
   },
   created: function () {
     axios
-      .get('http://localhost:3000/unauthorizedgists/' + gitcred.gitusername)
-      //.get('https://api.github.com/users/' + gitcred.gitusername + '/gists')
+      .get(
+        'http://localhost:3000/authorizedrepos/' +
+          gitcred.gitusername +
+          '/' +
+          gitcred.gitaccesstoken
+      )
       .then((response) => {
         this.repos = response.data;
       });

@@ -11,36 +11,8 @@ const routes: RouteRecordRaw[] = [
         component: () => import('pages/AppPages/HomePage.vue'),
       },
       {
-        path: '/ImageGallery',
-        component: () => import('pages/AppPages/ImageGallery.vue'),
-      },
-      {
-        path: '/PhotoPackages',
-        component: () => import('pages/AppPages/PhotoPackages.vue'),
-      },
-      {
-        path: '/PhotoBlog',
-        component: () => import('pages/AppPages/PhotoBlog.vue'),
-      },
-      {
         path: '/ContactDetails',
         component: () => import('pages/AppPages/ContactDetails.vue'),
-      },
-      {
-        path: '/PhotoTypes',
-        component: () => import('pages/AppPages/PhotoTypes.vue'),
-      },
-      {
-        path: '/PhotoYear',
-        component: () => import('pages/AppPages/PhotoYear.vue'),
-      },
-      {
-        path: '/PhotoByCountry',
-        component: () => import('pages/AppPages/PhotoByCountry.vue'),
-      },
-      {
-        path: '/AwardPhotos',
-        component: () => import('pages/AppPages/AwardPhotos.vue'),
       },
       {
         path: '/listrepos',
@@ -53,6 +25,14 @@ const routes: RouteRecordRaw[] = [
       {
         path: '/Unauth',
         component: () => import('pages/AppPages/UnauthorizedPage.vue'),
+      },
+      {
+        path: '/authrepos',
+        component: () => import('pages/AppPages/GitRepos.vue'),
+      },
+      {
+        path: '/authbranches',
+        component: () => import('pages/AppPages/GitBranches.vue'),
       },
     ],
   },

@@ -3,8 +3,7 @@
     <section class="hero is-medium is-primary is-bold mb-6">
       <div class="hero-body">
         <div class="container">
-          <h1 class="title">Public and Secret gists listed below</h1>
-          <h2 class="subtitle">using Vue JS, GITHUB API &amp; Quasar</h2>
+          <h4 class="title">Public and Secret gists listed below</h4>
         </div>
       </div>
     </section>
@@ -47,15 +46,14 @@ export default {
   },
   created: function () {
     axios
-      .get('https://api.github.com/users/' + gitcred.gitusername + '/gists', {
-        headers: {
-          authorization:
-            'Basic ' + btoa(gitcred.gitusername + ':' + gitcred.gitaccesstoken),
-        },
-      })
+      .get(
+        'http://localhost:3000/authorizedgists/' +
+          gitcred.gitusername +
+          '/' +
+          gitcred.gitaccesstoken
+      )
       .then((response) => {
         this.repos = response.data;
-        console.log(this.repos);
       });
   },
 };

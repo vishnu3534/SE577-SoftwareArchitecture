@@ -11,7 +11,7 @@
           @click="toggleLeftDrawer"
         />
 
-        <q-toolbar-title> Vishnu's Photohub and Github </q-toolbar-title>
+        <q-toolbar-title> Github Interface App</q-toolbar-title>
 
         <div>v 0.1</div>
       </q-toolbar>
@@ -33,8 +33,6 @@
       <div id="app">
         <div id="nav">
           <router-link to="/">Home</router-link> |
-          <router-link to="/ImageGallery">ImageGallery</router-link> |
-          <router-link to="/PhotoPackages">PhotoPackages</router-link> |
           <router-link to="/ContactDetails">Contact Me</router-link> |
           <router-link to="/listrepos">Github</router-link>
         </div>
@@ -56,17 +54,10 @@ const linksList = [
     link: '#/HomePage',
   },
   {
-    title: 'Travel Blog',
-    caption: '@vishnuKottarakara',
-    icon: 'flight',
-    link: '#/PhotoBlog',
-  },
-  {
-    title: 'Instagram',
-    caption: '@vishnuKottarakara',
-    icon: 'instagram',
-    link: 'https://www.instagram.com/vishnukottarakara/',
-    //link: 'http://localhost:8081/listrepos'
+    title: 'My Github',
+    caption: '@vishnu3534',
+    icon: 'web',
+    link: 'https://github.com/vishnu3534/SE577-SoftwareArchitecture',
   },
 ];
 
